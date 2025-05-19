@@ -9,12 +9,13 @@ import SwiftUI
 
 struct CitiesListView: View {
     let cities: [CitiesListModel]
+    @StateObject var favorites: Favorites = Favorites()
     
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(cities) { city in
-                    CitiesCellView(city: city)
+                    CitiesCellView(city: city, favorites: favorites)
                 }
                 .listRowBackground(Color.clear)
                 .frame(height: 44)

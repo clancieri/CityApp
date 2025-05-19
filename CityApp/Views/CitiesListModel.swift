@@ -5,9 +5,16 @@
 //  Created by Constanza Lancieri on 19/05/2025.
 //
 
-struct CitiesListModel: Identifiable {
+import Foundation
+
+class CitiesListModel: ObservableObject, Identifiable {
     let id: Int
     let city: CityModel
+
+    init(id: Int, city: CityModel) {
+        self.id = id
+        self.city = city
+    }
     
     var title: String {
         let name = city.name

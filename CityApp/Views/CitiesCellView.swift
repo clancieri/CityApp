@@ -8,7 +8,7 @@ import SwiftUI
 
 struct CitiesCellView: View {
     let city: CitiesListModel
-    @State var isFavourite: Bool = false
+    @StateObject var favorites: Favorites
     
     var body: some View {
         HStack {
@@ -19,10 +19,14 @@ struct CitiesCellView: View {
             
             Spacer()
             
-            Image(systemName: isFavourite ? "star.fill" : "star")
+            Image(systemName: favorites.contains(city) ? "star.fill" : "star")
                 .foregroundStyle(.yellow)
                 .onTapGesture {
-                    isFavourite.toggle()
+                    if favorites.contains(city) {
+                        favorites.remove(city)
+                    } else {
+                        favorites.add(city)
+                    }
                 }
         }
     }
