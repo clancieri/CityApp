@@ -15,21 +15,5 @@ enum StateView {
 }
 
 class CitiesContentViewModel: ObservableObject {
-    let service: CitiesServiceProtocol = CitiesService()
-    @Published var cities: [CitiesListModel] = []
-    @Published var state: StateView = .loading
-
-    @MainActor
-    func getCities() async {
-        let result = await service.getCities()
-        
-        switch result {
-        case .success(let cities):
-            self.state = !cities.isEmpty ? .success : .empty
-            self.cities = cities.map { CitiesListModel(id: $0.id, city: $0) }
-        case .failure(let failure):
-            self.state = .error
-            print(failure)
-        }
-    }
+    //TODO: - Add logic to this viewModel
 }

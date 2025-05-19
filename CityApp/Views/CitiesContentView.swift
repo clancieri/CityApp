@@ -12,20 +12,10 @@ struct CitiesContentView: View {
     
     var body: some View {
         NavigationStack {
-            Text("Cities")
             VStack {
-                CitiesListView(cities: viewModel.cities)
+                CitiesListView(viewModel: CitiesListViewModel())
             }
+            .padding()
         }
-        .onAppear {
-            Task {
-                await viewModel.getCities()
-            }
-        }
-        .padding()
     }
-}
-
-#Preview {
-    CitiesContentView(viewModel: CitiesContentViewModel())
 }
