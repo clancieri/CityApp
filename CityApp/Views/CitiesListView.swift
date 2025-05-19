@@ -10,12 +10,16 @@ import SwiftUI
 struct CitiesListView: View {
     @ObservedObject var viewModel: CitiesListViewModel
     @StateObject var favorites: Favorites = Favorites()
+    var onSelected: (CitiesListModel) -> Void
     
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.filteredCities) { city in
                     CitiesCellView(city: city, favorites: favorites)
+                        .onTapGesture {
+                            onSelected(city)
+                        }
                 }
                 .listRowBackground(Color.clear)
                 .frame(height: 44)

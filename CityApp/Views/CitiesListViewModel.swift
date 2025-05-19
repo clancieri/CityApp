@@ -25,7 +25,7 @@ class CitiesListViewModel: ObservableObject {
         switch result {
         case .success(let resultCities):
             self.state = !cities.isEmpty ? .success : .empty
-            self.cities = resultCities.map { CitiesListModel(id: $0.id, city: $0) }
+            self.cities = resultCities.map { CitiesListModel(city: $0) }
             self.cities.forEach { trie.insert($0.city) }
         case .failure(let failure):
             self.state = .error
@@ -43,7 +43,7 @@ class CitiesListViewModel: ObservableObject {
                     self.filteredCities = self.cities
                 } else {
                     let citiesMatches = self.trie.search(prefix: text)
-                    self.filteredCities = citiesMatches.map { CitiesListModel(id: $0.id, city: $0) }
+                    self.filteredCities = citiesMatches.map { CitiesListModel(city: $0) }
                 }
             }
             .store(in: &cancellables)

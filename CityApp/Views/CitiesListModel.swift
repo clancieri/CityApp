@@ -8,11 +8,9 @@
 import Foundation
 
 class CitiesListModel: ObservableObject, Identifiable {
-    let id: Int
     let city: CityModel
-
-    init(id: Int, city: CityModel) {
-        self.id = id
+    
+    init(city: CityModel) {
         self.city = city
     }
     

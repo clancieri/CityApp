@@ -18,16 +18,16 @@ final class Favorites: ObservableObject {
     }
     
     func contains(_ city: CitiesListModel) -> Bool {
-        cities.contains(city.id)
+        cities.contains(city.city.id)
     }
     
     func add(_ city: CitiesListModel) {
-        cities.insert(city.id)
+        cities.insert(city.city.id)
         save(cities)
     }
     
     func remove(_ city: CitiesListModel) {
-        cities.remove(city.id)
+        cities.remove(city.city.id)
         save(cities)
     }
     

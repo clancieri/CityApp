@@ -19,7 +19,7 @@ struct CityModel: Codable {
     }
 }
 
-struct Coordinate: Codable, Hashable {
+struct Coordinate: Codable {
     let lon: Double
     let lat: Double
 }
