@@ -24,7 +24,7 @@ struct CitiesListView: View {
             case .empty:
                 EmptyListView()
             case .error:
-                Text("Ha ocurrido un error")
+                ErrorView()
             }
         }
         .searchable(text: $viewModel.searchText)

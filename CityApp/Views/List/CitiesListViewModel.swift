@@ -34,6 +34,7 @@ class CitiesListViewModel: ObservableObject {
     }
     
     func filterCities() {
+        guard state != .error else { return }
         $searchText
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .removeDuplicates()
