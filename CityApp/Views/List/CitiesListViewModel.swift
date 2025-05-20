@@ -14,7 +14,7 @@ class CitiesListViewModel: ObservableObject {
     
     let service: CitiesServiceProtocol = CitiesService()
     @Published var cities: [CitiesListModel] = []
-    @Published var filteredCities: [CitiesListModel] = []
+    @Published var filteredCities: [CitiesListModel] = CitiesListModel.placeholder
     @Published var state: StateView = .loading
     private var cancellables = Set<AnyCancellable>()
     
@@ -24,12 +24,12 @@ class CitiesListViewModel: ObservableObject {
         
         switch result {
         case .success(let resultCities):
-            self.state = !cities.isEmpty ? .success : .empty
             self.cities = resultCities.map { CitiesListModel(city: $0) }
             self.cities.forEach { trie.insert($0.city) }
-        case .failure(let failure):
-            self.state = .error
-            print(failure)
+            self.filteredCities = self.cities
+            state = .success
+        case .failure(_):
+            state = .error
         }
     }
     
@@ -41,10 +41,13 @@ class CitiesListViewModel: ObservableObject {
                 guard let self = self else { return }
                 if text.isEmpty {
                     self.filteredCities = self.cities
+                    state = .success
                 } else {
                     let citiesMatches = self.trie.search(prefix: text)
                     self.filteredCities = citiesMatches.map { CitiesListModel(city: $0) }
+                    state = filteredCities.isEmpty ? .empty : .success
                 }
+               
             }
             .store(in: &cancellables)
     }

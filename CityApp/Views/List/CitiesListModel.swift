@@ -27,4 +27,16 @@ class CitiesListModel: ObservableObject, Identifiable {
         let subtitle = latitude + ", " + longitude
         return subtitle
     }
+    
+    static var placeholder: [CitiesListModel] = [
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
+        ]
 }
+
