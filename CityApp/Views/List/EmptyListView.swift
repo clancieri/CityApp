@@ -17,13 +17,15 @@ struct EmptyListView: View {
                 .padding()
             
             Text("No se han encontrado resultados para tu búsqueda")
-                
+                .font(Fonts.semibold(size: 20))
+                .padding(.horizontal, 20)
+                .padding(.vertical, 5)
             Text("Intenta usar otras palabras")
+                .font(Fonts.medium(size: 16))
             Spacer()
         }
         .multilineTextAlignment(.center)
         .padding()
-        
     }
 }
 
