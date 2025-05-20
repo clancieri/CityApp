@@ -5,7 +5,7 @@
 //  Created by Constanza Lancieri on 18/05/2025.
 //
 
-struct CityModel: Codable {
+struct CityModel: Codable, Equatable {
     let country: String
     let name: String
     let id: Int
@@ -17,9 +17,14 @@ struct CityModel: Codable {
         case id = "_id"
         case coord
     }
+    
+    static func == (lhs: CityModel, rhs: CityModel) -> Bool {
+        return lhs.country == rhs.country && lhs.name == rhs.name && lhs.id == rhs.id && lhs.coord == rhs.coord
+    }
+    
 }
 
-struct Coordinate: Codable {
+struct Coordinate: Codable, Equatable {
     let lon: Double
     let lat: Double
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CitiesListModel: ObservableObject, Identifiable {
+class CitiesListModel: ObservableObject, Identifiable, Equatable {
     let city: CityModel
     
     init(city: CityModel) {
@@ -37,6 +37,10 @@ class CitiesListModel: ObservableObject, Identifiable {
         CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
         CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
         CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        ]
+    ]
+    
+    static func == (lhs: CitiesListModel, rhs: CitiesListModel) -> Bool {
+        return lhs.city == rhs.city && lhs.title == rhs.title && lhs.id == rhs.id && lhs.subtitle == rhs.subtitle
+    }
 }
 

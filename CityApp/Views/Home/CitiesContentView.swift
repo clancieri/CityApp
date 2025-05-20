@@ -9,19 +9,17 @@ import SwiftUI
 
 struct CitiesContentView: View {
     @ObservedObject var viewModel: CitiesContentViewModel
+    @StateObject var listViewModel = CitiesListViewModel()
     @State private var selectedCity: CitiesListModel?
-    @State private var isDetailPresented = false
     
     var body: some View {
-        NavigationStack {
-            CitiesListView(viewModel: CitiesListViewModel(), onSelected: { city in
+        NavigationSplitView {
+            CitiesListView(viewModel: listViewModel, onSelected: { city in
                 selectedCity = city
-                isDetailPresented = true
             })
-            .navigationDestination(isPresented: $isDetailPresented) {
-                if let selectedCity {
-                    CitiesMapView(name: selectedCity.city.name, latitude: selectedCity.city.coord.lat, longitude: selectedCity.city.coord.lon)
-                }
+        } detail: {
+            if let selectedCity {
+                CitiesMapView(city: selectedCity)
             }
         }
     }
