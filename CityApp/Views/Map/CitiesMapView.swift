@@ -16,8 +16,8 @@ struct CitiesMapView: View {
         
     var body: some View {
         VStack {
-            if let mapItem {
-                Map(position: $cameraPosition, selection: $selectedMapItem) {
+            Map(position: $cameraPosition, selection: $selectedMapItem) {
+                if let mapItem {
                     Marker(item: mapItem)
                         .tag(mapItem)
                         .mapItemDetailSelectionAccessory(.sheet)

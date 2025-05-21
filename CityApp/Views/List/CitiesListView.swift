@@ -27,7 +27,7 @@ struct CitiesListView: View {
                 ErrorView()
             }
         }
-        .searchable(text: $viewModel.searchText)
+        .showSearchBar(!showFavorites, text: $viewModel.searchText)
         .scrollIndicators(.hidden)
         .onAppear {
             isLoading = true
@@ -45,7 +45,6 @@ struct CitiesListView: View {
             Button {
                 showFavorites.toggle()
                 viewModel.updateFilteredCities(by: showFavorites)
-                
             } label: {
                 Text(!showFavorites ? "Ver los favoritos" : "Mostrar toda la lista")
                     .font(Fonts.regular(size: 18))
@@ -61,6 +60,6 @@ struct CitiesListView: View {
             .listRowBackground(Color.clear)
             .frame(height: 44)
             .padding()
-        }
+        }        
     }
 }
