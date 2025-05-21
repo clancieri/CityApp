@@ -17,10 +17,10 @@ struct CitiesListView: View {
         ScrollView {
             switch viewModel.state {
             case .loading:
-                citiesCellView
+                citiesListView
                     .skeletonView(reason: isLoading)
             case .success:
-                citiesCellView
+                citiesListView
             case .empty:
                 EmptyListView()
             case .error:
@@ -29,7 +29,6 @@ struct CitiesListView: View {
         }
         .searchable(text: $viewModel.searchText)
         .scrollIndicators(.hidden)
-        .listStyle(.plain)
         .onAppear {
             isLoading = true
             Task {
@@ -41,7 +40,7 @@ struct CitiesListView: View {
         }
     }
     
-    @ViewBuilder var citiesCellView: some View {
+    @ViewBuilder var citiesListView: some View {
         LazyVStack {
             ForEach(viewModel.filteredCities) { city in
                 CitiesCellView(city: city, favorites: favorites)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CitiesListModel: ObservableObject, Identifiable, Equatable {
+class CitiesListModel: Identifiable, Equatable, Hashable {
     let city: CityModel
     
     init(city: CityModel) {
@@ -41,6 +41,13 @@ class CitiesListModel: ObservableObject, Identifiable, Equatable {
     
     static func == (lhs: CitiesListModel, rhs: CitiesListModel) -> Bool {
         return lhs.city == rhs.city && lhs.title == rhs.title && lhs.id == rhs.id && lhs.subtitle == rhs.subtitle
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(city)
+        hasher.combine(title)
+        hasher.combine(subtitle)
+        hasher.combine(id)
     }
 }
 

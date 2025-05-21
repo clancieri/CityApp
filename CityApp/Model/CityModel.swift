@@ -5,7 +5,7 @@
 //  Created by Constanza Lancieri on 18/05/2025.
 //
 
-struct CityModel: Codable, Equatable {
+struct CityModel: Codable, Equatable, Hashable {
     let country: String
     let name: String
     let id: Int
@@ -24,7 +24,7 @@ struct CityModel: Codable, Equatable {
     
 }
 
-struct Coordinate: Codable, Equatable {
+struct Coordinate: Codable, Equatable, Hashable {
     let lon: Double
     let lat: Double
 }

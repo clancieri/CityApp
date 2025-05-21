@@ -11,15 +11,27 @@ struct CitiesContentView: View {
     @ObservedObject var viewModel: CitiesContentViewModel
     @StateObject var listViewModel = CitiesListViewModel()
     @State private var selectedCity: CitiesListModel?
+    @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
+    @State var navigationPath = NavigationPath()
     
     var body: some View {
         NavigationSplitView {
-            CitiesListView(viewModel: listViewModel, onSelected: { city in
-                selectedCity = city
-            })
+            NavigationStack(path: $navigationPath) {
+                CitiesListView(viewModel: listViewModel, onSelected: { city in
+                    selectedCity = city
+                    if verticalSizeClass == .regular {
+                        navigationPath.append(city)
+                    }
+                })
+                .navigationDestination(for: CitiesListModel.self) { city in
+                    CitiesMapView(city: city)
+                }
+            }
         } detail: {
-            if let selectedCity {
+            if let selectedCity, verticalSizeClass == .compact {
                 CitiesMapView(city: selectedCity)
+            } else {
+                Text("Selecciona una ciudad")
             }
         }
     }
