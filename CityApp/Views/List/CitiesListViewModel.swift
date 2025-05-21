@@ -11,7 +11,7 @@ import Combine
 class CitiesListViewModel: ObservableObject {
     @Published var searchText = ""
     private let trie = CityTrie()
-    
+    @Published var favorites: Favorites = Favorites()
     let service: CitiesServiceProtocol = CitiesService()
     @Published var cities: [CitiesListModel] = []
     @Published var filteredCities: [CitiesListModel] = CitiesListModel.placeholder
@@ -51,5 +51,12 @@ class CitiesListViewModel: ObservableObject {
                
             }
             .store(in: &cancellables)
+    }
+    
+    func updateFilteredCities(by showFavorites: Bool) {
+        let favoritesSaved = favorites.getSaved()
+        let onlyFavorites = filteredCities.filter { favoritesSaved.contains($0.city.id) }
+        
+        self.filteredCities = showFavorites ? onlyFavorites : cities
     }
 }

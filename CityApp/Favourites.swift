@@ -35,4 +35,9 @@ final class Favorites: ObservableObject {
         let citiesArray = Array(cities)
         UserDefaults.standard.set(citiesArray, forKey: FAVOURITE)
     }
+    
+    func getSaved() -> [Int] {
+        let saved = UserDefaults.standard.array(forKey: FAVOURITE) as? [Int] ?? []
+        return saved
+    }
 }

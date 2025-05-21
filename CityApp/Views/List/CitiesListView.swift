@@ -9,9 +9,9 @@ import SwiftUI
 
 struct CitiesListView: View {
     @ObservedObject var viewModel: CitiesListViewModel
-    @StateObject var favorites: Favorites = Favorites()
     var onSelected: (CitiesListModel) -> Void
     @State var isLoading: Bool = true
+    @State var showFavorites: Bool = false
     
     var body: some View {
         ScrollView {
@@ -42,8 +42,18 @@ struct CitiesListView: View {
     
     @ViewBuilder var citiesListView: some View {
         LazyVStack {
+            Button {
+                showFavorites.toggle()
+                viewModel.updateFilteredCities(by: showFavorites)
+                
+            } label: {
+                Text(!showFavorites ? "Ver los favoritos" : "Mostrar toda la lista")
+                    .font(Fonts.regular(size: 18))
+                    .padding(.top)
+            }
+            
             ForEach(viewModel.filteredCities) { city in
-                CitiesCellView(city: city, favorites: favorites)
+                CitiesCellView(city: city, favorites: viewModel.favorites)
                     .onTapGesture {
                         onSelected(city)
                     }
