@@ -11,7 +11,7 @@ import Combine
 class CitiesListViewModel: ObservableObject {
     @Published var searchText = ""
     private let trie = CityTrie()
-    @Published var favorites: Favorites = Favorites()
+    @Published var favorites: FavoritesRepository = FavoritesRepository()
     let service: CitiesServiceProtocol = CitiesService()
     @Published var cities: [CitiesListModel] = []
     @Published var filteredCities: [CitiesListModel] = CitiesListModel.placeholder

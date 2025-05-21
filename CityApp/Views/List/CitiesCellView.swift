@@ -8,7 +8,7 @@ import SwiftUI
 
 struct CitiesCellView: View {
     let city: CitiesListModel
-    @StateObject var favorites: Favorites
+    @StateObject var favorites: FavoritesRepository
     
     var body: some View {
         HStack {

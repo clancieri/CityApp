@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-final class Favorites: ObservableObject {
+final class FavoritesRepository: ObservableObject {
     @Published private var cities: Set<Int>
     private let FAVOURITE = "fav_key"
     

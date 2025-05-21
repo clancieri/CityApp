@@ -26,7 +26,7 @@ struct Fonts {
     }
 }
 
-public enum FontName: String, CaseIterable {
+enum FontName: String, CaseIterable {
     case SNProBold = "SFProDisplay-Bold"
     case SNProSemiBold = "SFProDisplay-Semibold"
     case SNProMedium = "SFProDisplay-Medium"
