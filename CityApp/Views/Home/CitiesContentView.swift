@@ -24,12 +24,14 @@ struct CitiesContentView: View {
                     }
                 })
                 .navigationDestination(for: CitiesListModel.self) { city in
-                    CitiesMapView(city: city)
+                    let viewModel = CitiesMapViewModel(city: city)
+                    CitiesMapView(viewModel: viewModel)
                 }
             }
         } detail: {
             if let selectedCity, verticalSizeClass == .compact {
-                CitiesMapView(city: selectedCity)
+                let viewModel = CitiesMapViewModel(city: selectedCity)
+                CitiesMapView(viewModel: viewModel)
             } else {
                 Text("Selecciona una ciudad")
             }

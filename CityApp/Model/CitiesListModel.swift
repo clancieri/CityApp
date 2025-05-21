@@ -28,6 +28,18 @@ class CitiesListModel: Identifiable, Equatable, Hashable {
         return subtitle
     }
     
+    var name: String {
+        city.name
+    }
+    
+    var latitude: Double {
+        city.coord.lat
+    }
+    
+    var longitude: Double {
+        city.coord.lon
+    }
+    
     static var placeholder: [CitiesListModel] = [
         CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
         CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),

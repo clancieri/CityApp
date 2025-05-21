@@ -9,42 +9,31 @@ import SwiftUI
 import MapKit
 
 struct CitiesMapView: View {
-    let city: CitiesListModel
+    let viewModel: CitiesMapViewModel
     @State private var cameraPosition: MapCameraPosition = .automatic
-    private let defaultZoom: Double = 1300
-    
+    @State private var mapItem: MKMapItem?
+    @State private var selectedMapItem: MKMapItem?
+        
     var body: some View {
         VStack {
-            Map(position: $cameraPosition) {
-                Marker(city.city.name, coordinate: cityCoordinate)
-            }
-            .onChange(of: city) { _, newCity in
-                withAnimation {
-                    cameraPosition = createCameraPosition()
+            if let mapItem {
+                Map(position: $cameraPosition, selection: $selectedMapItem) {
+                    Marker(item: mapItem)
+                        .tag(mapItem)
+                        .mapItemDetailSelectionAccessory(.sheet)
                 }
             }
         }
-        .onAppear {
+        .onChange(of: viewModel.city) { _, newCity in
             withAnimation {
-                cameraPosition = createCameraPosition()
+                cameraPosition = viewModel.createCameraPosition()
             }
         }
-    }
-    
-    var cityCoordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(
-            latitude: city.city.coord.lat,
-            longitude: city.city.coord.lon
-        )
-    }
-    
-    private func createCameraPosition() -> MapCameraPosition {
-        return .region(
-            MKCoordinateRegion(
-                center: cityCoordinate,
-                latitudinalMeters: defaultZoom,
-                longitudinalMeters: defaultZoom
-            )
-        )
+        .onAppear {
+            mapItem = viewModel.createMapItem()
+            withAnimation {
+                cameraPosition = viewModel.createCameraPosition()
+            }
+        }
     }
 }
