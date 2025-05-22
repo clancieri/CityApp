@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct CitiesContentView: View {
-    @ObservedObject var viewModel: CitiesContentViewModel
-    @StateObject var listViewModel = CitiesListViewModel()
-    @State private var selectedCity: CitiesListModel?
-    @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
     @State var navigationPath = NavigationPath()
+    @State private var selectedCity: CitiesListModel?
+    @StateObject var listViewModel = CitiesListViewModel()
+    @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
     
     var body: some View {
         NavigationSplitView {

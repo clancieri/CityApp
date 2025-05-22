@@ -7,7 +7,15 @@
 
 import Foundation
 
-final class FavoritesRepository: ObservableObject {
+protocol FavoritesRepositoryProtocol {
+    func contains(_ city: CitiesListModel) -> Bool
+    func add(_ city: CitiesListModel)
+    func remove(_ city: CitiesListModel)
+    func save(_ cities: Set<Int>)
+    func getSaved() -> [Int]
+}
+
+final class FavoritesRepository: FavoritesRepositoryProtocol, ObservableObject {
     @Published private var cities: Set<Int>
     private let FAVOURITE = "fav_key"
     

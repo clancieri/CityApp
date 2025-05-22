@@ -52,14 +52,18 @@ struct CitiesListView: View {
             }
             
             ForEach(viewModel.filteredCities) { city in
-                CitiesCellView(city: city, favorites: viewModel.favorites)
-                    .onTapGesture {
-                        onSelected(city)
-                    }
+                CitiesCellView(
+                    city: city,
+                    isFavorite: viewModel.isFavorite(city: city),
+                    onTapFavorite: { viewModel.handleFavorites(with: city) }
+                )
+                .onTapGesture {
+                    onSelected(city)
+                }
             }
             .listRowBackground(Color.clear)
             .frame(height: 44)
             .padding()
-        }        
+        }
     }
 }

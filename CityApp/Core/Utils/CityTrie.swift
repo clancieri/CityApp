@@ -15,11 +15,10 @@ class CityTrie {
     func insert(_ city: CityModel) {
         var current = root
         for char in city.name.lowercased() {
-            if let currentRoot = current.children[char] {
-                current = currentRoot
-            } else {
+            if current.children[char] == nil {
                 current.children[char] = TrieNode()
             }
+            current = current.children[char]!
         }
         current.cities.append(city)
     }

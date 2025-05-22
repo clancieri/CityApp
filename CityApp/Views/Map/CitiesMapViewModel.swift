@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import MapKit
 
-class CitiesMapViewModel: ObservableObject {
+final class CitiesMapViewModel {
     let city: CitiesListModel
     
     init(city: CitiesListModel) {

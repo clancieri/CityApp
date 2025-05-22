@@ -10,13 +10,19 @@ import Combine
 
 class CitiesListViewModel: ObservableObject {
     @Published var searchText = ""
-    private let trie = CityTrie()
-    @Published var favorites: FavoritesRepository = FavoritesRepository()
-    let service: CitiesServiceProtocol = CitiesService()
-    @Published var cities: [CitiesListModel] = []
-    @Published var filteredCities: [CitiesListModel] = CitiesListModel.placeholder
     @Published var state: StateView = .loading
+    @Published var cities: [CitiesListModel] = []
+    @Published var favorites: FavoritesRepositoryProtocol
+    @Published var filteredCities: [CitiesListModel] = CitiesListModel.placeholder
+    
+    private let trie = CityTrie()
+    private let service: CitiesServiceProtocol
     private var cancellables = Set<AnyCancellable>()
+
+    init(favorites: FavoritesRepositoryProtocol = FavoritesRepository(), service: CitiesServiceProtocol = CitiesService()) {
+        self.favorites = favorites
+        self.service = service
+    }
     
     @MainActor
     func getCities() async {
@@ -36,27 +42,42 @@ class CitiesListViewModel: ObservableObject {
     func filterCities() {
         guard state != .error else { return }
         $searchText
-            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .debounce(for: 0.3, scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] text in
                 guard let self = self else { return }
-                if text.isEmpty {
-                    self.filteredCities = self.cities
-                    state = .success
-                } else {
-                    let citiesMatches = self.trie.search(prefix: text)
-                    self.filteredCities = citiesMatches.map { CitiesListModel(city: $0) }
-                    state = filteredCities.isEmpty ? .empty : .success
-                }
-               
+                self.handleSearch(text)
             }
             .store(in: &cancellables)
+    }
+    
+    func handleSearch(_ text: String) {
+        guard state != .error else { return }
+        if text.isEmpty {
+            filteredCities = cities
+            state = .success
+        } else {
+            let citiesMatches = trie.search(prefix: text)
+            filteredCities = citiesMatches.map { CitiesListModel(city: $0) }
+            state = filteredCities.isEmpty ? .empty : .success
+        }
+    }
+    
+    func isFavorite(city: CitiesListModel) -> Bool {
+        favorites.contains(city)
+    }
+    
+    func handleFavorites(with city: CitiesListModel) {
+        if favorites.contains(city) {
+            favorites.remove(city)
+        } else {
+            favorites.add(city)
+        }
     }
     
     func updateFilteredCities(by showFavorites: Bool) {
         let favoritesSaved = favorites.getSaved()
         let onlyFavorites = filteredCities.filter { favoritesSaved.contains($0.city.id) }
-        
-        self.filteredCities = showFavorites ? onlyFavorites : cities
+        filteredCities = showFavorites ? onlyFavorites : cities
     }
 }
