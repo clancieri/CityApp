@@ -36,7 +36,6 @@ struct CitiesListView: View {
                 viewModel.filterCities()
                 isLoading = false
             }
-
         }
     }
     
@@ -52,10 +51,11 @@ struct CitiesListView: View {
             }
             
             ForEach(viewModel.filteredCities) { city in
+                let id = city.city.id
                 CitiesCellView(
                     city: city,
-                    isFavorite: viewModel.isFavorite(city: city),
-                    onTapFavorite: { viewModel.handleFavorites(with: city) }
+                    isFavorite: viewModel.isFavorite(id: id),
+                    onTapFavorite: { viewModel.handleFavorites(with: id) }
                 )
                 .onTapGesture {
                     onSelected(city)

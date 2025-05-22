@@ -8,11 +8,12 @@
 import Foundation
 
 protocol FavoritesRepositoryProtocol {
-    func contains(_ city: CitiesListModel) -> Bool
-    func add(_ city: CitiesListModel)
-    func remove(_ city: CitiesListModel)
+    func contains(_ cityId: Int) -> Bool
+    func add(_ cityId: Int)
+    func remove(_ cityId: Int)
     func save(_ cities: Set<Int>)
     func getSaved() -> [Int]
+    func toggleFavorites(with cityId: Int)
 }
 
 final class FavoritesRepository: FavoritesRepositoryProtocol, ObservableObject {
@@ -24,17 +25,17 @@ final class FavoritesRepository: FavoritesRepositoryProtocol, ObservableObject {
         cities = Set(saved)
     }
     
-    func contains(_ city: CitiesListModel) -> Bool {
-        cities.contains(city.city.id)
+    func contains(_ cityId: Int) -> Bool {
+        cities.contains(cityId)
     }
     
-    func add(_ city: CitiesListModel) {
-        cities.insert(city.city.id)
+    func add(_ cityId: Int) {
+        cities.insert(cityId)
         save(cities)
     }
     
-    func remove(_ city: CitiesListModel) {
-        cities.remove(city.city.id)
+    func remove(_ cityId: Int) {
+        cities.remove(cityId)
         save(cities)
     }
     
@@ -46,5 +47,9 @@ final class FavoritesRepository: FavoritesRepositoryProtocol, ObservableObject {
     func getSaved() -> [Int] {
         let saved = UserDefaults.standard.array(forKey: FAVOURITE) as? [Int] ?? []
         return saved
+    }
+    
+    func toggleFavorites(with cityId: Int) {
+        cities.contains(cityId) ? remove(cityId) : add(cityId)
     }
 }

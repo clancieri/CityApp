@@ -63,16 +63,12 @@ class CitiesListViewModel: ObservableObject {
         }
     }
     
-    func isFavorite(city: CitiesListModel) -> Bool {
-        favorites.contains(city)
+    func isFavorite(id: Int) -> Bool {
+        favorites.contains(id)
     }
     
-    func handleFavorites(with city: CitiesListModel) {
-        if favorites.contains(city) {
-            favorites.remove(city)
-        } else {
-            favorites.add(city)
-        }
+    func handleFavorites(with id: Int) {
+        favorites.toggleFavorites(with: id)
     }
     
     func updateFilteredCities(by showFavorites: Bool) {
