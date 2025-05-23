@@ -8,15 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct SkeletonableView: ViewModifier {
-    let reason: RedactionReasons
-    
-    func body(content: Content) -> some View {
-        content
-            .redacted(reason: reason)
-    }
-}
-
 struct DisplaySearchView: ViewModifier {
     let isVisible: Bool
     @Binding var text: String
@@ -32,10 +23,6 @@ struct DisplaySearchView: ViewModifier {
 }
 
 extension View {
-    func skeletonView(reason: Bool) -> some View {
-        modifier(SkeletonableView(reason: reason ? .placeholder : []))
-    }
-    
     func showSearchBar(_ isVisible: Bool, text: Binding<String>) -> some View  {
         modifier(DisplaySearchView(isVisible: isVisible, text: text))
     }

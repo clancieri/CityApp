@@ -26,22 +26,6 @@ struct ErrorView: View {
                 .padding(.horizontal, 40)
             
             Spacer()
-            
-            Button {
-                //TODO: -Add action
-            } label: {
-                Text("Reintentar")
-                    .font(Fonts.medium(size: 18))
-                    .padding(.horizontal, 35)
-                    .padding(.vertical, 12)
-                    .foregroundColor(.purple)
-                    .background(
-                        .purple.opacity(0.2),
-                        in: Capsule()
-                    )
-            }
-            .padding(.top, 30)
-            
         }
         .multilineTextAlignment(.center)
         .padding()

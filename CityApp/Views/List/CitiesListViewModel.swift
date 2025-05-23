@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class CitiesListViewModel: ObservableObject {
+final class CitiesListViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var state: StateView = .loading
     @Published var cities: [CitiesListModel] = []
@@ -52,9 +52,9 @@ class CitiesListViewModel: ObservableObject {
     }
     
     func handleSearch(_ text: String) {
-        guard state != .error else { return }
         if text.isEmpty {
             filteredCities = cities
+            /// Handle the case that we were showing the empty state
             state = .success
         } else {
             let citiesMatches = trie.search(prefix: text)
@@ -73,7 +73,9 @@ class CitiesListViewModel: ObservableObject {
     
     func updateFilteredCities(by showFavorites: Bool) {
         let favoritesSaved = favorites.getSaved()
-        let onlyFavorites = filteredCities.filter { favoritesSaved.contains($0.city.id) }
+        let onlyFavorites = cities.filter { favoritesSaved.contains($0.city.id) }
+        /// After showing the favorites, we need to reset the search text so every city is shown
+        searchText = !showFavorites ? "" : searchText
         filteredCities = showFavorites ? onlyFavorites : cities
     }
 }

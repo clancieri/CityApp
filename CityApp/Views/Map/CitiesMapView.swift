@@ -26,6 +26,7 @@ struct CitiesMapView: View {
         }
         .onChange(of: viewModel.city) { _, newCity in
             withAnimation {
+                mapItem = viewModel.createMapItem()
                 cameraPosition = viewModel.createCameraPosition()
             }
         }

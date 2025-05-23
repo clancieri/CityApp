@@ -10,7 +10,6 @@ import SwiftUI
 struct CitiesListView: View {
     @ObservedObject var viewModel: CitiesListViewModel
     var onSelected: (CitiesListModel) -> Void
-    @State var isLoading: Bool = true
     @State var showFavorites: Bool = false
     
     var body: some View {
@@ -18,7 +17,7 @@ struct CitiesListView: View {
             switch viewModel.state {
             case .loading:
                 citiesListView
-                    .skeletonView(reason: isLoading)
+                    .redacted(reason: .placeholder)
             case .success:
                 citiesListView
             case .empty:
@@ -30,11 +29,9 @@ struct CitiesListView: View {
         .showSearchBar(!showFavorites, text: $viewModel.searchText)
         .scrollIndicators(.hidden)
         .onAppear {
-            isLoading = true
             Task {
                 await viewModel.getCities()
                 viewModel.filterCities()
-                isLoading = false
             }
         }
     }
