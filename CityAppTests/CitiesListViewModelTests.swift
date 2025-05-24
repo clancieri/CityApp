@@ -165,9 +165,3 @@ final class FakeCitiesService: CitiesServiceProtocol {
         }
     }
 }
-
-extension CityModel {
-    static func fake(id: Int = 1, name: String = "Buenos Aires") -> CityModel {
-        CityModel(country: "AR", name: name, id: id, coord: .init(lon: 30.3432, lat: -12.45345))
-    }
-}
