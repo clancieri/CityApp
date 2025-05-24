@@ -166,30 +166,6 @@ final class FakeCitiesService: CitiesServiceProtocol {
     }
 }
 
-final class FakeFavoritesRepository: FavoritesRepositoryProtocol {
-    var savedIds: Set<Int> = []
-    
-    func add(_ cityId: Int) {}
-    
-    func remove(_ cityId: Int) {}
-    
-    func save(_ cities: Set<Int>) { }
-    
-    func getSaved() -> [Int] {
-        return Array(savedIds)
-    }
-    
-    func contains(_ id: Int) -> Bool {
-        return true
-    }
-    
-    func toggleFavorites(with id: Int) { }
-    
-    func getSaved() -> Set<Int> {
-        savedIds
-    }
-}
-
 extension CityModel {
     static func fake(id: Int = 1, name: String = "Buenos Aires") -> CityModel {
         CityModel(country: "AR", name: name, id: id, coord: .init(lon: 30.3432, lat: -12.45345))

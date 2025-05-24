@@ -17,11 +17,12 @@ protocol FavoritesRepositoryProtocol {
 }
 
 final class FavoritesRepository: FavoritesRepositoryProtocol, ObservableObject {
-    @Published private var cities: Set<Int>
     private let FAVOURITE = "fav_key"
+    @Published private var cities: Set<Int>
+    private let userDefaults: UserDefaults = .standard
     
     init() {
-        let saved = (UserDefaults.standard.array(forKey: FAVOURITE) as? [Int]) ?? []
+        let saved = (userDefaults.array(forKey: FAVOURITE) as? [Int]) ?? []
         cities = Set(saved)
     }
     
@@ -41,11 +42,11 @@ final class FavoritesRepository: FavoritesRepositoryProtocol, ObservableObject {
     
     func save(_ cities: Set<Int>) {
         let citiesArray = Array(cities)
-        UserDefaults.standard.set(citiesArray, forKey: FAVOURITE)
+        userDefaults.set(citiesArray, forKey: FAVOURITE)
     }
     
     func getSaved() -> [Int] {
-        let saved = UserDefaults.standard.array(forKey: FAVOURITE) as? [Int] ?? []
+        let saved = userDefaults.array(forKey: FAVOURITE) as? [Int] ?? []
         return saved
     }
     
