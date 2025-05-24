@@ -40,7 +40,6 @@ final class CitiesListViewModel: ObservableObject {
     }
     
     func filterCities() {
-        guard state != .error else { return }
         $searchText
             .debounce(for: 0.3, scheduler: RunLoop.main)
             .removeDuplicates()
@@ -52,6 +51,7 @@ final class CitiesListViewModel: ObservableObject {
     }
     
     func handleSearch(_ text: String) {
+        guard state != .error else { return }
         if text.isEmpty {
             filteredCities = cities
             /// Handle the case that we were showing the empty state

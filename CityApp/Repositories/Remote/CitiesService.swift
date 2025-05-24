@@ -15,23 +15,17 @@ struct CitiesService: CitiesServiceProtocol {
         let mainUrl = Bundle.main.object(forInfoDictionaryKey: "BASE_URL") as? String ?? ""
         
         guard let url = URL(string: mainUrl) else {
-            return .failure(NetworkingError.invalidUrl)
+            return .failure(ServiceError.invalidUrl)
         }
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                return .failure(NetworkingError.invalidResponse) }
+                return .failure(ServiceError.invalidResponse) }
             
             let cities = try JSONDecoder().decode([CityModel].self, from: data)
             return .success(cities)
         } catch {
-            return .failure(NetworkingError.invalidData)
+            return .failure(ServiceError.invalidData)
         }
     }
-}
-
-enum NetworkingError: Error {
-    case invalidUrl
-    case invalidResponse
-    case invalidData
 }

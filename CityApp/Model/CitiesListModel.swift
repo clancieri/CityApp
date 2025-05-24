@@ -40,17 +40,6 @@ class CitiesListModel: Identifiable, Equatable, Hashable {
         city.coord.lon
     }
     
-    static var placeholder: [CitiesListModel] = [
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-        CitiesListModel(city: .init(country: "ARS", name: "Argentina", id: 242342342, coord: Coordinate(lon: 12.132131, lat: -132113123))),
-    ]
-    
     static func == (lhs: CitiesListModel, rhs: CitiesListModel) -> Bool {
         return lhs.city == rhs.city && lhs.title == rhs.title && lhs.id == rhs.id && lhs.subtitle == rhs.subtitle
     }
@@ -62,4 +51,3 @@ class CitiesListModel: Identifiable, Equatable, Hashable {
         hasher.combine(id)
     }
 }
-
