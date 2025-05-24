@@ -19,14 +19,14 @@ class CitiesListModel: Identifiable, Equatable, Hashable {
         let flag = code.flagEmoji()
         let name = city.name
         
-        return flag + " " + name + ", " + code
+        return  "\(flag) \(name), \(code)"
     }
     
     var subtitle: String {
         let latitude = String(city.coord.lat)
         let longitude = String(city.coord.lon)
         
-        let subtitle = latitude + ", " + longitude
+        let subtitle = "\(latitude), \(longitude)"
         return subtitle
     }
     

@@ -1,0 +1,89 @@
+{
+  "sourceLanguage" : "es",
+  "strings" : {
+    "allcities.button.title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todas"
+          }
+        }
+      }
+    },
+    "empty.list.subtitle" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intenta usar otras palabras"
+          }
+        }
+      }
+    },
+    "empty.list.title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se han encontrado resultados para tu búsqueda"
+          }
+        }
+      }
+    },
+    "favorites.button.title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritas"
+          }
+        }
+      }
+    },
+    "home.list.title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista de ciudades"
+          }
+        }
+      }
+    },
+    "Key" : {
+      "extractionState" : "manual"
+    },
+    "list.error.subtitle" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ocurrido un error inesperado. Intenta de nuevo más tarde."
+          }
+        }
+      }
+    },
+    "list.error.title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lo sentimos"
+          }
+        }
+      }
+    },
+    "map.select.city" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona una ciudad"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

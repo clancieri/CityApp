@@ -16,12 +16,12 @@ struct ErrorView: View {
                 .frame(height: 250)
                 .padding(.horizontal)
             
-            Text("Lo sentimos")
+            Text("list.error.title")
                 .font(Fonts.semibold(size: 20))
                 .padding(.horizontal, 20)
                 .padding(.vertical, 5)
             
-            Text("Ha ocurrido un error inesperado. Intenta de nuevo más tarde")
+            Text("list.error.subtitle")
                 .font(Fonts.medium(size: 16))
                 .padding(.horizontal, 40)
             

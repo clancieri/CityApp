@@ -32,7 +32,7 @@ struct CitiesContentView: View {
                 let viewModel = CitiesMapViewModel(city: selectedCity)
                 CitiesMapView(viewModel: viewModel)
             } else {
-                Text("Selecciona una ciudad")
+                Text("map.select.city")
             }
         }
     }

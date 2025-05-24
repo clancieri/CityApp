@@ -16,11 +16,11 @@ struct EmptyListView: View {
                 .frame(height: 220)
                 .padding()
             
-            Text("No se han encontrado resultados para tu búsqueda")
+            Text("empty.list.title")
                 .font(Fonts.semibold(size: 20))
                 .padding(.horizontal, 20)
                 .padding(.vertical, 5)
-            Text("Intenta usar otras palabras")
+            Text("empty.list.subtitle")
                 .font(Fonts.medium(size: 16))
             Spacer()
         }

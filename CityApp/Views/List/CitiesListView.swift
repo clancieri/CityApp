@@ -40,26 +40,13 @@ struct CitiesListView: View {
     @ViewBuilder var citiesListView: some View {
         LazyVStack {
             HStack {
-                Text("Lista de ciudades")
+                Text("home.list.title")
                     .font(Fonts.semibold(size: 20))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Button {
+                FavoriteButton(showFavorites: showFavorites) {
                     showFavorites.toggle()
                     viewModel.updateFilteredCities(by: showFavorites)
-                } label: {
-                    Text(!showFavorites ? "Favoritas" : "Ver todas")
-                        .font(Fonts.medium(size: 13))
-                        .foregroundStyle(Color.yellowText)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 5)
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 20,
-                                style: .continuous
-                            )
-                            .fill(Color.yellowButton)
-                        )
                 }
             }
             .padding(.horizontal, 5)
