@@ -15,17 +15,27 @@ struct CitiesCellView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(city.title)
+                    .font(Fonts.semibold(size: 16))
                 Text(city.subtitle)
+                    .font(Fonts.regular(size: 14))
             }
+            
+            .padding(.leading, 5)
             
             Spacer()
             
             Image(systemName: isFavorite ? "star.fill" : "star")
-                .foregroundStyle(.yellow)
+                .foregroundStyle(Color.yellowGold)
                 .onTapGesture {
                     isFavorite.toggle()
                     onTapFavorite()
                 }
+                .padding(.trailing, 5)
         }
+        .padding()
+        .frame(height: 63)
+        .background(Color.white)
+        .cornerRadius(20)
+
     }
 }

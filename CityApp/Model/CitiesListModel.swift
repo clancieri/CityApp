@@ -15,9 +15,11 @@ class CitiesListModel: Identifiable, Equatable, Hashable {
     }
     
     var title: String {
-        let name = city.name
         let code = city.country
-        return name + ", " + code
+        let flag = code.flagEmoji()
+        let name = city.name
+        
+        return flag + " " + name + ", " + code
     }
     
     var subtitle: String {
@@ -51,3 +53,4 @@ class CitiesListModel: Identifiable, Equatable, Hashable {
         hasher.combine(id)
     }
 }
+

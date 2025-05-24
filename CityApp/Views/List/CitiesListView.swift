@@ -26,6 +26,7 @@ struct CitiesListView: View {
                 ErrorView()
             }
         }
+        .background(Color.background)
         .showSearchBar(!showFavorites, text: $viewModel.searchText)
         .scrollIndicators(.hidden)
         .onAppear {
@@ -38,14 +39,30 @@ struct CitiesListView: View {
     
     @ViewBuilder var citiesListView: some View {
         LazyVStack {
-            Button {
-                showFavorites.toggle()
-                viewModel.updateFilteredCities(by: showFavorites)
-            } label: {
-                Text(!showFavorites ? "Ver los favoritos" : "Mostrar toda la lista")
-                    .font(Fonts.regular(size: 18))
-                    .padding(.top)
+            HStack {
+                Text("Lista de ciudades")
+                    .font(Fonts.semibold(size: 20))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Button {
+                    showFavorites.toggle()
+                    viewModel.updateFilteredCities(by: showFavorites)
+                } label: {
+                    Text(!showFavorites ? "Favoritas" : "Ver todas")
+                        .font(Fonts.medium(size: 13))
+                        .foregroundStyle(Color.yellowText)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 5)
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 20,
+                                style: .continuous
+                            )
+                            .fill(Color.yellowButton)
+                        )
+                }
             }
+            .padding(.horizontal, 5)
             
             ForEach(viewModel.filteredCities) { city in
                 let id = city.city.id
@@ -54,13 +71,12 @@ struct CitiesListView: View {
                     isFavorite: viewModel.isFavorite(id: id),
                     onTapFavorite: { viewModel.handleFavorites(with: id) }
                 )
+                .padding(.vertical, 5)
                 .onTapGesture {
                     onSelected(city)
                 }
             }
-            .listRowBackground(Color.clear)
-            .frame(height: 44)
-            .padding()
         }
+        .padding()
     }
 }
