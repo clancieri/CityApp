@@ -74,6 +74,7 @@ final class CitiesListViewModel: ObservableObject {
     func updateFilteredCities(by showFavorites: Bool) {
         let favoritesSaved = favorites.getSaved()
         let onlyFavorites = cities.filter { favoritesSaved.contains($0.city.id) }
+        state = onlyFavorites.isEmpty && showFavorites ? .empty : .success
         /// After showing the favorites, we need to reset the search text so every city is shown
         searchText = !showFavorites ? "" : searchText
         filteredCities = showFavorites ? onlyFavorites : cities

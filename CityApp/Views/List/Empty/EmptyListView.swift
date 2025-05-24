@@ -14,7 +14,7 @@ struct EmptyListView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 220)
-                .padding()
+                .padding(.bottom, 15)
             
             Text("empty.list.title")
                 .font(Fonts.semibold(size: 20))
@@ -24,6 +24,7 @@ struct EmptyListView: View {
                 .font(Fonts.medium(size: 16))
             Spacer()
         }
+        .background(Color.background)
         .multilineTextAlignment(.center)
         .padding()
     }

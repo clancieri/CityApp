@@ -14,6 +14,8 @@ struct CitiesListView: View {
     
     var body: some View {
         ScrollView {
+            headerListView
+
             switch viewModel.state {
             case .loading:
                 citiesListView
@@ -39,18 +41,6 @@ struct CitiesListView: View {
     
     @ViewBuilder var citiesListView: some View {
         LazyVStack {
-            HStack {
-                Text("home.list.title")
-                    .font(Fonts.semibold(size: 20))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                FavoriteButton(showFavorites: showFavorites) {
-                    showFavorites.toggle()
-                    viewModel.updateFilteredCities(by: showFavorites)
-                }
-            }
-            .padding(.horizontal, 5)
-            
             ForEach(viewModel.filteredCities) { city in
                 let id = city.city.id
                 CitiesCellView(
@@ -64,6 +54,21 @@ struct CitiesListView: View {
                 }
             }
         }
-        .padding()
+        .padding(.horizontal)
+    }
+    
+    @ViewBuilder var headerListView: some View {
+        HStack {
+            Text("home.list.title")
+                .font(Fonts.semibold(size: 20))
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            FavoriteButton(showFavorites: showFavorites) {
+                showFavorites.toggle()
+                viewModel.updateFilteredCities(by: showFavorites)
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 25)
     }
 }
