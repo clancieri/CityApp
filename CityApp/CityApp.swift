@@ -11,7 +11,8 @@ import SwiftUI
 struct CityApp: App {
     var body: some Scene {
         WindowGroup {
-            CitiesContentView()
+            let viewModel = CitiesContentViewModel()
+            CitiesContentView(viewModel: viewModel)
         }
     }
 }
