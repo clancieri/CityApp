@@ -7,15 +7,14 @@
 import SwiftUI
 
 final class CitiesContentViewModel {
-    @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
     
     /// This functions determines if the navigation should use a stack or a split view based on the device size
-    func shouldNavigateWithStack() -> Bool {
+    func shouldNavigateWithStack(_ verticalSizeClass: UserInterfaceSizeClass?) -> Bool {
         guard verticalSizeClass == .regular || (verticalSizeClass == .compact && !isLargePhone)
         else { return false }
         return true
     }
-    func shouldNavigateWithSplit() -> Bool {
+    func shouldNavigateWithSplit(_ verticalSizeClass: UserInterfaceSizeClass?) -> Bool {
         guard verticalSizeClass == .compact && isLargePhone else { return false }
         return true
     }

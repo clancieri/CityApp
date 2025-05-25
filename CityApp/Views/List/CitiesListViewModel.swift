@@ -41,7 +41,7 @@ final class CitiesListViewModel: ObservableObject {
     
     func filterCities() {
         $searchText
-            .debounce(for: 0.3, scheduler: RunLoop.main)
+            .debounce(for: 0.2, scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] text in
                 guard let self = self else { return }
@@ -74,7 +74,7 @@ final class CitiesListViewModel: ObservableObject {
     func updateFilteredCities(by showFavorites: Bool) {
         let favoritesSaved = favorites.getSaved()
         let onlyFavorites = cities.filter { favoritesSaved.contains($0.city.id) }
-        state = onlyFavorites.isEmpty && showFavorites ? .empty : .success
+        
         /// After showing the favorites, we need to reset the search text so every city is shown
         searchText = !showFavorites ? "" : searchText
         filteredCities = showFavorites ? onlyFavorites : cities

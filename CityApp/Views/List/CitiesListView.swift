@@ -14,8 +14,6 @@ struct CitiesListView: View {
     
     var body: some View {
         ScrollView {
-            headerListView
-
             switch viewModel.state {
             case .loading:
                 citiesListView
@@ -40,6 +38,8 @@ struct CitiesListView: View {
     }
     
     @ViewBuilder var citiesListView: some View {
+        headerListView
+        
         LazyVStack {
             ForEach(viewModel.filteredCities) { city in
                 let id = city.city.id
@@ -60,7 +60,7 @@ struct CitiesListView: View {
     @ViewBuilder var headerListView: some View {
         HStack {
             Text("home.list.title")
-                .font(Fonts.semibold(size: 20))
+                .font(Fonts.bold(size: 20))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             FavoriteButton(showFavorites: showFavorites) {

@@ -12,13 +12,14 @@ struct CitiesContentView: View {
     @State var navigationPath = NavigationPath()
     @State private var selectedCity: CitiesListModel?
     @StateObject var listViewModel = CitiesListViewModel()
-    
+    @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
+
     var body: some View {
         NavigationSplitView {
             NavigationStack(path: $navigationPath) {
                 CitiesListView(viewModel: listViewModel, onSelected: { city in
                     selectedCity = city
-                    if viewModel.shouldNavigateWithStack() {
+                    if viewModel.shouldNavigateWithStack(verticalSizeClass) {
                         navigationPath.append(city)
                     }
                 })
@@ -28,7 +29,7 @@ struct CitiesContentView: View {
                 }
             }
         } detail: {
-            if let selectedCity, viewModel.shouldNavigateWithSplit() {
+            if let selectedCity, viewModel.shouldNavigateWithSplit(verticalSizeClass) {
                 let viewModel = CitiesMapViewModel(city: selectedCity)
                 CitiesMapView(viewModel: viewModel)
             } else {
