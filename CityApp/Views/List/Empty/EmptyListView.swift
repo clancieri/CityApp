@@ -18,10 +18,12 @@ struct EmptyListView: View {
             
             Text("empty.list.title")
                 .font(Fonts.semibold(size: 20))
+                .foregroundStyle(.black)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 5)
             Text("empty.list.subtitle")
                 .font(Fonts.medium(size: 16))
+                .foregroundStyle(.black)
             Spacer()
         }
         .background(Color.background)

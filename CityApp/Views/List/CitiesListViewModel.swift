@@ -25,7 +25,8 @@ final class CitiesListViewModel: ObservableObject {
     }
     
     @MainActor
-    func getCities() async {
+    func initCities() async {
+        guard cities.isEmpty else { return }
         let result = await service.getCities()
         
         switch result {

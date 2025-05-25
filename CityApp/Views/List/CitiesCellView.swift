@@ -16,8 +16,10 @@ struct CitiesCellView: View {
             VStack(alignment: .leading) {
                 Text(city.title)
                     .font(Fonts.semibold(size: 16))
+                    .foregroundStyle(.black)
                 Text(city.subtitle)
                     .font(Fonts.regular(size: 14))
+                    .foregroundStyle(.black)
             }
             
             .padding(.leading, 5)

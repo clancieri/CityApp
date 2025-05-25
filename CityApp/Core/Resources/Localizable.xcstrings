@@ -3,6 +3,12 @@
   "strings" : {
     "allcities.button.title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View all"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13,6 +19,12 @@
     },
     "empty.list.subtitle" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try searching for something else"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23,6 +35,12 @@
     },
     "empty.list.title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results found "
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33,6 +51,12 @@
     },
     "favorites.button.title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43,6 +67,12 @@
     },
     "home.list.title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List of cities"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56,6 +86,12 @@
     },
     "list.error.subtitle" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unexpected error. Try again later."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -66,6 +102,12 @@
     },
     "list.error.title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorry"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76,6 +118,12 @@
     },
     "map.select.city" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a city"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",

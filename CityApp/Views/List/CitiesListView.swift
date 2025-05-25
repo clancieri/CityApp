@@ -26,12 +26,13 @@ struct CitiesListView: View {
                 ErrorView()
             }
         }
+        .frame(maxWidth: .infinity)
         .background(Color.background)
         .showSearchBar(!showFavorites, text: $viewModel.searchText)
         .scrollIndicators(.hidden)
         .onAppear {
             Task {
-                await viewModel.getCities()
+                await viewModel.initCities()
                 viewModel.filterCities()
             }
         }
@@ -61,6 +62,7 @@ struct CitiesListView: View {
         HStack {
             Text("home.list.title")
                 .font(Fonts.bold(size: 20))
+                .foregroundStyle(.black)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             FavoriteButton(showFavorites: showFavorites) {

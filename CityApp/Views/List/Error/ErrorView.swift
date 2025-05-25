@@ -18,11 +18,13 @@ struct ErrorView: View {
             
             Text("list.error.title")
                 .font(Fonts.semibold(size: 20))
+                .foregroundStyle(.black)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 5)
             
             Text("list.error.subtitle")
                 .font(Fonts.medium(size: 16))
+                .foregroundStyle(.black)
                 .padding(.horizontal, 40)
             
             Spacer()
