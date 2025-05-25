@@ -31,7 +31,7 @@ final class CitiesListViewModelTests: XCTestCase {
         let expectedCities: [CityModel] = [CityModel.fake(id: 1)]
         fakeService.citiesResult = expectedCities
         
-        await sut.getCities()
+        await sut.initCities()
         
         XCTAssertEqual(sut.state, .success)
         XCTAssertEqual(sut.cities.count, expectedCities.count)
@@ -40,7 +40,7 @@ final class CitiesListViewModelTests: XCTestCase {
     func test_getCities_whenIsError_shouldUpdateStateToError() async {
         fakeService.error = ServiceError.invalidData
         
-        await sut.getCities()
+        await sut.initCities()
         
         XCTAssertEqual(sut.state, .error)
         XCTAssertEqual(sut.cities.count, 0)
@@ -63,7 +63,7 @@ final class CitiesListViewModelTests: XCTestCase {
     
     func test_handleSearch_whenErrorState_shouldNotSearch() async {
         fakeService.error = ServiceError.invalidResponse
-        await sut.getCities()
+        await sut.initCities()
         
         sut.handleSearch("buenos")
         
@@ -79,7 +79,7 @@ final class CitiesListViewModelTests: XCTestCase {
         ]
         fakeService.citiesResult = cities
         
-        await sut.getCities()
+        await sut.initCities()
         
         sut.handleSearch("Corrientes")
         
@@ -97,7 +97,7 @@ final class CitiesListViewModelTests: XCTestCase {
         ]
         fakeService.citiesResult = cities
         
-        await sut.getCities()
+        await sut.initCities()
         
         sut.handleSearch("Ca")
         let name = sut.filteredCities.map { $0.city.name }
@@ -120,7 +120,7 @@ final class CitiesListViewModelTests: XCTestCase {
         ]
         fakeService.citiesResult = cities
         
-        await sut.getCities()
+        await sut.initCities()
         
         sut.handleSearch("tokio")
         let name = sut.filteredCities.map { $0.city.name }
@@ -141,7 +141,7 @@ final class CitiesListViewModelTests: XCTestCase {
         ]
         fakeService.citiesResult = cities
         
-        await sut.getCities()
+        await sut.initCities()
         
         sut.handleSearch("MADR")
         let name = sut.filteredCities.map { $0.city.name }
