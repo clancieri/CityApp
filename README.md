@@ -41,7 +41,7 @@ To provide an adaptive user experience using native SwiftUI components, CityApp 
 
 For smaller devices, the app falls back to a standard NavigationStack, enabling seamless navigation between views without splitting the screen.
 
-<img src="https://github.com/user-attachments/assets/bdac51fc-fc90-419d-b67c-6742e05a5014" width="905"><br><br>
+<img src="https://github.com/user-attachments/assets/bdac51fc-fc90-419d-b67c-6742e05a5014" width="650"><br><br>
 <img src="https://github.com/user-attachments/assets/66794c1f-4178-4c16-9e24-de447aa08919" width="300">
 <img src="https://github.com/user-attachments/assets/88fe10df-c9c7-40e9-91d7-56adbed131bc" width="300">
 <img src="https://github.com/user-attachments/assets/667421a8-eac0-402d-9af4-fc5cc1418278" width="300">
